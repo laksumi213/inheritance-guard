@@ -1,6 +1,5 @@
-cat <<EOF > .github/workflows/build.yml
 name: Build Windows EXE
-"on":
+on:
   push:
     branches:
       - main
@@ -32,4 +31,3 @@ jobs:
       with:
         name: Windows-EXE-Package
         path: dist/相続AI匿名化ツール.exe
-EOF
