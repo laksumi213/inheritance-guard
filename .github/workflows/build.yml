@@ -1,0 +1,35 @@
+cat <<EOF > .github/workflows/build.yml
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: コードを取得
+      uses: actions/checkout@v4
+
+    - name: Pythonをセットアップ
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: 必要なツールをインストール
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+
+    - name: EXEを作成 (PyInstaller実行)
+      run: |
+        pyinstaller --onefile --noconsole --name 相続AI匿名化ツール --clean inheritance_guard.py
+
+    - name: 成果物を保存
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows-EXE-Package
+        path: dist/相続AI匿名化ツール.exe
+EOF
