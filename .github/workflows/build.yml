@@ -1,9 +1,9 @@
 cat <<EOF > .github/workflows/build.yml
 name: Build Windows EXE
-
-on:
+"on":
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
