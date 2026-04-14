@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    
+    # 警告を消すための設定を追加
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
     - name: コードを取得
